@@ -10,3 +10,11 @@ Any concerns, feel free to contact me and I can adjust.  Just want to share as I
 cheers.
 
 -bay
+
+
+---
+
+MirrorAllVertexGroups.py
+
+this script creates a mirror all menu in the vertex groups menu that will coppy all vertex groups from one side of a model to the other for a symmetrical mesh.  this means you can paint weights for the left hand, legs, torso etc and then mirror all weights to the other side (the other side weights are overwritten).  There is a small options menu that comes up to let you choose an axis etc.
+
