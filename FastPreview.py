@@ -1,6 +1,7 @@
 
 
 import bpy
+from mathutils import Vector
 
 bl_info = {
     'name': 'Playback Preview',
@@ -13,6 +14,8 @@ bl_info = {
 
 playing = "False"
 brCurframe = 0
+brStartRange = 1              
+brEndRange = 72
 
 class fastPreview(bpy.types.Operator):
     """play range and return to current frame on stop"""
@@ -24,14 +27,47 @@ class fastPreview(bpy.types.Operator):
         global playing
         if playing == "False":
             global brCurframe
+                     
             brCurframe = bpy.context.scene.frame_current
-            bpy.context.scene.frame_current = bpy.context.scene.frame_start            
+            
+            context = bpy.context
+            c = context.copy()
+            for i, area in enumerate(context.screen.areas):
+                if area.type != 'GRAPH_EDITOR':
+                    continue
+                region = area.regions[-1]
+                print("SCREEN:", context.screen.name , "[", i, "]")
+                c["space_data"] = area.spaces.active
+                c["area"] = area
+                c["region"] = region            
+                h = region.height # screen
+                w = region.width  # 
+                bl = region.view2d.region_to_view(0, 0)
+                tr = region.view2d.region_to_view(w, h)
+
+                bpy.context.scene.use_preview_range = True
+
+                bpy.context.scene.frame_preview_start =  int(bl[0])
+                bpy.context.scene.frame_preview_end =  int(tr[0])
+                
+                bpy.context.scene.frame_current = int(bl[0])
+            
+            
+            #bpy.context.scene.frame_current = bpy.context.scene.frame_start            
             bpy.ops.screen.animation_play()
             playing = "True"   
         elif playing == "True":
             global brCurframe
+
+            bpy.context.scene.frame_preview_start =  bpy.context.scene.frame_start
+            bpy.context.scene.frame_preview_end =  bpy.context.scene.frame_end
+
+            bpy.context.scene.use_preview_range = False
+
+            
             bpy.ops.screen.animation_cancel(restore_frame=False)
             bpy.context.scene.frame_current = brCurframe
+                                    
             playing = "False"  
             print ("woo")   
           
