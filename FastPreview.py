@@ -32,6 +32,10 @@ class fastPreview(bpy.types.Operator):
             
             context = bpy.context
             c = context.copy()
+            
+            previewStart = bpy.context.scene.frame_start 
+            previewEnd = bpy.context.scene.frame_end 
+                        
             for i, area in enumerate(context.screen.areas):
                 if area.type != 'GRAPH_EDITOR':
                     continue
@@ -44,14 +48,14 @@ class fastPreview(bpy.types.Operator):
                 w = region.width  # 
                 bl = region.view2d.region_to_view(0, 0)
                 tr = region.view2d.region_to_view(w, h)
+                previewStart = int(bl[0])
+                previewEnd = int(tr[0])
 
-                bpy.context.scene.use_preview_range = True
-
-                bpy.context.scene.frame_preview_start =  int(bl[0])
-                bpy.context.scene.frame_preview_end =  int(tr[0])
-                
-                bpy.context.scene.frame_current = int(bl[0])
-            
+            bpy.context.scene.use_preview_range = True
+            bpy.context.scene.frame_preview_start =  previewStart
+            bpy.context.scene.frame_preview_end =  previewEnd
+            bpy.context.scene.frame_current = previewStart
+        
             
             #bpy.context.scene.frame_current = bpy.context.scene.frame_start            
             bpy.ops.screen.animation_play()
