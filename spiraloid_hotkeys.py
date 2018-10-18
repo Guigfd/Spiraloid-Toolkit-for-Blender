@@ -184,9 +184,10 @@ kmi = km.keymap_items.new('view2d.scroll_right', 'WHEELDOWNMOUSE', 'PRESS', shif
 kmi = km.keymap_items.new('view2d.scroll_left', 'WHEELUPMOUSE', 'PRESS', shift=True)
 kmi = km.keymap_items.new('view2d.zoom_border', 'B', 'PRESS', shift=True)
 kmi = km.keymap_items.new('view2d.pan', 'LEFTMOUSE', 'PRESS', shift=True, oskey=True)
-kmi = km.keymap_items.new('view2d.zoom_out', 'WHEELUPMOUSE', 'PRESS', shift=True, oskey=True)
-kmi_props_setattr(kmi.properties, 'zoomfacy', 1000.0)
-kmi = km.keymap_items.new('view2d.zoom_in', 'WHEELDOWNMOUSE', 'PRESS', shift=True, oskey=True)
+kmi = km.keymap_items.new('view2d.zoom_in', 'WHEELUPMOUSE', 'PRESS', shift=True, oskey=True)
+kmi = km.keymap_items.new('view2d.zoom_out', 'WHEELDOWNMOUSE', 'PRESS', shift=True, oskey=True)
+kmi = km.keymap_items.new('view2d.zoom_out', 'WHEELDOWNMOUSE', 'PRESS', shift=True, alt=True)
+kmi = km.keymap_items.new('view2d.zoom_in', 'WHEELUPMOUSE', 'PRESS', shift=True, alt=True)
 
 # Map Frames
 km = kc.keymaps.new('Frames', space_type='EMPTY', region_type='WINDOW', modal=False)
