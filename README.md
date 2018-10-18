@@ -58,20 +58,22 @@ CONGRATS!  Everything is installed.  hit “ctrl U” to save the startup scene 
 
 Here’s a list of basic usage of my essentials..  Wherever possible I tried to leave it the default so you could still google.  Right Mouse Button (RMB) to select, drag etc.  x to delete.  A to deselect all or Toggle.  GXYZ RXYZ SXYZ alt-S to move on normal etc all still work.
 
-Mine adjustments are made for someone (me) who has used nearly every 3D tool for the last 25 years in major productions.  I understand the hotkey memorization I do is abnormal, but this kind of configuration helps me switch tools and makes my work faster.
+My adjustments to the UI or hotkeys are made for me, so bear in mind I have a lot of habits from using nearly every 3D tool for the last 25 years in major productions.  I understand that the hotkey memorization I do is abnormal, but this kind of configuration helps me switch tools and makes my work faster.
 
-  
 
 
 General 3D Navigation:
 
-Alt LMB. Orbits the camera.
+Alt LMB. orbits the camera.
 Alt RMB dolly’s the camera
 Alt Shift pans the camera.
-Alt shift mouse dolly’s the camera
-(I know I know.  Trust me Maya users, alt shift drag to pan rocks)
+(I know I know.  Trust me Maya users, alt shift drag to pan rocks.  But I did put in alt MMB too for the SGI greybeards who like fighting the mouse wheel)
 
-Mouse wheel over a 3D view and the view will spin around the aimpoint.  If you have a throw mouse wheel like an MX master 25 this is amazing)
+speaking of
+
+Alt shift mouse Wheel dolly’s the camera in and out for 3D and 2D views.  
+
+Mouse wheel over a 3D view and the view will spin around the aimpoint like a sculptors turntable.  If you have a weighted throw mouse wheel like an MX master25 this is amazing.  
 
 You can set the aimpoint by hitting alt-a 
 (or cmd-a on a Mac).   This is actually an add-on I had to write.  It moves the cursor and aims to that.  Trust me.  Every other way to do this sucked.
