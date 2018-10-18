@@ -14,11 +14,11 @@ Installation:
 
 WARNING!!!:  Blender users may wish to backup your current configuration before installing in case something goes wrong you can undo.  For example on a Mac,  creating a compressed zip archive of this folder:
 
-~/Library/Application Support/Blender/2.79\
+~/Library/Application Support/Blender/2.79
 
-or on windows 10
+(or on windows 10)
 
-%APPDATA%\Roaming\Blender Foundation\Blender\2.79\
+%APPDATA%\Roaming\Blender Foundation\Blender\2.79
 
  is a good idea.  
 (This is where blender stores all your preference data)
