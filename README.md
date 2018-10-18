@@ -159,14 +159,23 @@ This adds a property to selected bones to simulate physics overlap.  great for f
 I also strongly suggest these addons:
 
 https://blendermarket.com/products/voxel-heat-diffuse-skinning
+
 https://github.com/ucupumar/yPanel
+
 https://blendermarket.com/products/auto-rig-pro
+
 http://renderhjs.net/textools/blender/
+
 https://gumroad.com/l/uvpackmaster
+
 https://lollypopman.com/2016/08/09/addon-shapekey-helpers/
+
 https://en.blender.org/index.php/Extensions:2.6/Py/Scripts/Animation/Corrective_Shape_Key
+
 https://blendermarket.com/products/asset-management?ref=2
+
 https://github.com/knekke/blender_addons
+
 
 
 
