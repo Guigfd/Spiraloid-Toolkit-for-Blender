@@ -178,6 +178,9 @@ https://blendermarket.com/products/asset-management?ref=2
 
 https://github.com/knekke/blender_addons
 
+https://www.blendernation.com/2016/06/15/addon-zaloopok/
+
+
 
 
 
