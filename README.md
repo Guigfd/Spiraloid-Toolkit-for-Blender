@@ -158,7 +158,7 @@ This adds a property to selected bones to simulate physics overlap.  great for f
 
 ---
 
-I also strongly suggest these addons:
+I also strongly suggest these paid addons:
 
 https://blendermarket.com/products/voxel-heat-diffuse-skinning
 
@@ -181,9 +181,17 @@ https://github.com/knekke/blender_addons
 https://www.blendernation.com/2016/06/15/addon-zaloopok/
 
 
+---
+
+good luck with your art.
+
+-bay
 
 
+my patreon
+https://www.patreon.com/spiraloid
 
-
+my 3D Graphic Novel "Nanite Fulcrum"
+http://spiraloid.net/nanitefulcrum
 
  
