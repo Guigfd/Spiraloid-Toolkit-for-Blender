@@ -185,13 +185,16 @@ https://www.blendernation.com/2016/06/15/addon-zaloopok/
 
 good luck with your art.
 
--bay
+-b
 
-
-my patreon
-https://www.patreon.com/spiraloid
+@bayraitt
+bleaf.tumblr.com
 
 my 3D Graphic Novel "Nanite Fulcrum"
 http://spiraloid.net/nanitefulcrum
 
- 
+my store
+http://spiraloid.net/store/
+
+my patreon
+https://www.patreon.com/spiraloid
