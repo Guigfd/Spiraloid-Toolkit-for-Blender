@@ -187,14 +187,8 @@ good luck with your art.
 
 -b
 
-@bayraitt
-bleaf.tumblr.com
-
 my 3D Graphic Novel "Nanite Fulcrum"
 http://spiraloid.net/nanitefulcrum
-
-my store
-http://spiraloid.net/store/
 
 my patreon
 https://www.patreon.com/spiraloid
