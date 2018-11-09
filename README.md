@@ -61,6 +61,7 @@ Here’s a list of basic usage of my essentials..  Wherever possible I tried to 
 My adjustments to the UI or hotkeys are made for me, so bear in mind I have a lot of habits from using nearly every 3D tool for the last 25 years in major productions.  I understand that the hotkey memorization I do is abnormal, but this kind of configuration helps me switch tools and makes my work faster.
 
 
+Quick Start of most frequently used changes.
 
 General 3D Navigation:
 
@@ -181,6 +182,9 @@ https://github.com/knekke/blender_addons
 https://www.blendernation.com/2016/06/15/addon-zaloopok/
 
 
+
+
+
 ---
 
 good luck with your art.
@@ -192,3 +196,5 @@ http://spiraloid.net/nanitefulcrum
 
 my patreon
 https://www.patreon.com/spiraloid
+
+
