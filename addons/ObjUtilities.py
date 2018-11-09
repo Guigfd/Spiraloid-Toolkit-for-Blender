@@ -167,7 +167,7 @@ class   ExportSelectedAsObj(bpy.types.Operator, ExportHelper):
         use_normals_setting = BoolProperty(
                 name="Write Normals",
                 description="Export one normal per vertex and per face, to represent flat faces and sharp edges",
-                default=False,
+                default=True,
                 )
         use_uvs_setting = BoolProperty(
                 name="Include UVs",
@@ -441,8 +441,30 @@ class ImportMultipleObjs(bpy.types.Operator, ImportHelper):
                                     use_image_search = self.image_search_setting,
                                     split_mode = self.split_mode_setting,
                                     global_clamp_size = self.clamp_size_setting)
-                bpy.context.scene.objects.active.name = i.name
-                bpy.context.scene.objects.active.data.name = i.name
+                bpy.context.scene.objects.active = bpy.context.selected_objects[0]
+                bpy.ops.object.modifier_add(type='SUBSURF')
+                bpy.ops.object.modifier_add(type='DECIMATE')
+                bpy.context.object.modifiers["Decimate"].decimate_type = 'DISSOLVE'
+                bpy.context.object.modifiers["Decimate"].delimit = {'SEAM', 'SHARP'}
+                bpy.context.object.modifiers["Decimate"].angle_limit = 0.0523599
+
+                bpy.ops.object.modifier_add(type='TRIANGULATE')
+                bpy.context.object.modifiers["Triangulate"].quad_method = 'BEAUTY'
+                # bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Decimate")
+                # bpy.ops.object.modifier_apply(apply_as='DATA', modifier="Triangulate")
+                bpy.ops.object.mode_set(mode='EDIT')
+                bpy.ops.mesh.select_all(action = 'DESELECT')
+                bpy.ops.mesh.select_all(action='TOGGLE')
+                bpy.ops.mesh.tris_convert_to_quads()
+                bpy.ops.mesh.faces_shade_smooth()
+                bpy.ops.mesh.mark_sharp(clear=True)
+                bpy.ops.mesh.mark_sharp(clear=True, use_verts=True)
+                if not bpy.context.object.data.uv_layers:
+                    bpy.ops.uv.smart_project(island_margin=0.04 , user_area_weight=0.75)
+                bpy.ops.object.mode_set(mode='OBJECT')
+                bpy.context.object.data.use_auto_smooth = True
+                bpy.context.object.data.auto_smooth_angle = 0.785398
+                
                 bpy.ops.object.select_all(action='DESELECT')
             return {'FINISHED'}
 
