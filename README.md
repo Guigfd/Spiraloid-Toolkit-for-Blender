@@ -62,6 +62,8 @@ My adjustments to the UI or hotkeys are made for me, so bear in mind I have a lo
 
 
 Quick Start of most frequently used changes.
+and more detailed guide cane be found here:
+https://github.com/spiraloid/Spiraloid-Toolkit-for-Blender/wiki
 
 General 3D Navigation:
 
