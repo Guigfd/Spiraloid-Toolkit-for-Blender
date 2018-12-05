@@ -788,6 +788,8 @@ keyconfig_data = \
      ),
     ("view3d.aim_at_selected", {"type": 'A', "value": 'PRESS', "alt": True}, None),
     ("view3d.zoom", {"type": 'RIGHTMOUSE', "value": 'PRESS', "shift": True, "alt": True}, None),
+    ("view3d.move", {"type": 'MIDDLEMOUSE', "value": 'PRESS', "alt": True}, None),
+    ("view3d.move", {"type": 'MIDDLEMOUSE', "value": 'PRESS', "shift": True, "alt": True}, None),
     ],
    },
   ),
