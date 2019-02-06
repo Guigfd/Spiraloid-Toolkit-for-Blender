@@ -18,7 +18,7 @@ WARNING!!!:  Blender users may wish to backup your current configuration before 
 
 (or on windows 10)
 
-%APPDATA%\Roaming\Blender Foundation\Blender\2.79
+%APPDATA%\Blender Foundation\Blender\2.79
 
  is a good idea.  
 (This is where blender stores all your preference data)
@@ -61,6 +61,9 @@ Here’s a list of basic usage of my essentials..  Wherever possible I tried to 
 My adjustments to the UI or hotkeys are made for me, so bear in mind I have a lot of habits from using nearly every 3D tool for the last 25 years in major productions.  I understand that the hotkey memorization I do is abnormal, but this kind of configuration helps me switch tools and makes my work faster.
 
 
+Quick Start of most frequently used changes.
+and more detailed guide cane be found here:
+https://github.com/spiraloid/Spiraloid-Toolkit-for-Blender/wiki
 
 General 3D Navigation:
 
@@ -158,7 +161,7 @@ This adds a property to selected bones to simulate physics overlap.  great for f
 
 ---
 
-I also strongly suggest these addons:
+I also strongly suggest these paid addons:
 
 https://blendermarket.com/products/voxel-heat-diffuse-skinning
 
@@ -184,6 +187,16 @@ https://www.blendernation.com/2016/06/15/addon-zaloopok/
 
 
 
+---
+
+good luck with your art.
+
+-b
+
+my 3D Graphic Novel "Nanite Fulcrum"
+http://spiraloid.net/nanitefulcrum
+
+my patreon
+https://www.patreon.com/spiraloid
 
 
- 
