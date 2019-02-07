@@ -119,17 +119,20 @@ AimAtSelected.py
 
 This adds an "Aim Selected" item to the view menu. This will move the cursor to the selected element and aim the camera at it. I recomend binding it to alt+a or cmd+a
 
-SmoothAnimationLoop.py
+ApplyMeshPose.py
 
-This adds a menu to the graph editor > key > smmooth animation loop. enter the number of frame the falloff should effect and the animation curves at the end of your selected animation will be moved to the values at the start of the animation with a falloff.
+this adds a new menu item to the pose menu on an amature  "Appy > Apply Pose as Rest Pose with Mesh”.  This will sets the current skeleton pose as the new rest pose AND update the skinned meshes to use the current shape as the new edit shape. Essential for sculpting or modelling on meshes with an armature and skinning already attached.
 
-SimplifyMultipleFCurves-v1_1.py (TBD)
+must have third party free addons:
 
-This adds a menu to the graph editor > properties panel > f-curve > Simplify multiple f-curves > By Error. the slider to adjust error settings can be found in the 3Dviewport Tool shelf pane. Adjust the slider to reduce the samples for selected curves. Works great for creating animator friendly resamples for baked, mocap or puppeteered dense anim curves.
+AssetGen : This will decimated a symmetrical model with vertex color (dynamesh, dynatopo, medium, scan etc) into a low poly game ready asset that is automatically UV mapped with baked w albedo and orm textures and automatically exports a .glb file at a desired polycount for upload to sketchfab or to put into your game.  more info here:
+https://www.youtube.com/watch?v=TH5CZMdrASw
+https://github.com/Linko-3D/AssetGen
 
-JiggleArmature.py (TBD)
-
-This adds a property to selected bones to simulate physics overlap. great for floppy, ears, antenae etc etc. the Jiggle Scene toggle must be set to on in the scene properties to see the results.
+FastCarve:
+quick boolean tool
+https://www.youtube.com/watch?v=Con5uMDwRQ0&list=PLboXykqtm8dxZxhA1P-iyy_vpis04Hyem
+https://github.com/jayanam/fast-carve
 
 I also strongly suggest these paid addons:
 
