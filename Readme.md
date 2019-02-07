@@ -92,6 +92,9 @@ Alt ` set view to current camera Alt 1 set view to front Alt 2 set view to left 
 
 Alt mouse wheel scrubs though frames Cmd mouse wheel scrubs though keyframes of selected objects.
 
+Alt mouse wheel will grow and shrink bone selection in pose mode.
+
+
 Up Arrow goes to first frame Down Arrow goes to last frame Left Arrow goes to next keyframe for selected object. Right Arrow goes to previous keyframe for selected object. Alt Right Arrow goes to next frame Alt Left Arrow goes to previous frame
 
 Ctrl Return does a playblast of whatever window is under your mouse.
