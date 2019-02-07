@@ -29,6 +29,7 @@ def main(context):
         bpy.context.view_layer.objects.active = obj
         bpy.ops.object.mode_set(mode='POSE', toggle=False)
         bpy.ops.pose.armature_apply()
+        # bpy.ops.poselib.apply_pose(pose_index=-2)
         bpy.ops.object.mode_set(mode='OBJECT', toggle=False)
         bpy.ops.object.select_all(action='DESELECT')
         for ob in ch:
@@ -42,7 +43,7 @@ def main(context):
 class BR_OT_apply_mesh_pose(bpy.types.Operator):
     """Set current pose and shape as rest bind shape"""
     bl_idname = "view3d.apply_mesh_pose"
-    bl_label = "Apply Pose and Mesh "
+    bl_label = "Apply Pose as Rest Pose with Mesh "
 
     def execute(self, context):
         main(context)
@@ -56,7 +57,7 @@ def menu_draw(self, context):
 
 def register():
     bpy.utils.register_class(BR_OT_apply_mesh_pose)
-    bpy.types.VIEW3D_MT_pose_apply.append(menu_draw)  
+    bpy.types.VIEW3D_MT_pose_apply.prepend(menu_draw)  
 
 def unregister():
     bpy.utils.unregister_class(BR_OT_apply_mesh_pose)
