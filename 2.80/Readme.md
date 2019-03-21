@@ -33,7 +33,7 @@ Date 2019-02-02 00:58
 Hash: 4ef09cf937f2
 
 you can download from here:
-https://builder.blender.org/download/blender-2.80-8c87af74409a-win64.zip
+https://builder.blender.org/download/blender-2.80-0bbff8a71138-win64.zip
 
 tip: copy the zip content folder named "blender-2.80.0-git.8c87af74409a-windows64" into your C:\Program Files\Blender\
 run the blender.exe folder (set permissions to be admin so you can run scripts etc)
