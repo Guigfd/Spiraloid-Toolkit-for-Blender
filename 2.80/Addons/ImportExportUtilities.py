@@ -46,14 +46,14 @@ from bpy_extras.image_utils import load_image
 
 class BR_OT_load_obj_as_shapekey(bpy.types.Operator):
         bl_idname = 'load.obj_as_shapekey'
-        bl_label = 'Obj Files as Shape Keys'
+        bl_label = '.obj sequence as shape keys'
         bl_options = {'REGISTER', 'UNDO'}
         bl_description = "Obj sequence as shape key(s)"
 
-        filepath = StringProperty(name="File path", description="File filepath of Obj", maxlen=4096, default="")
-        filter_folder = BoolProperty(name="Filter folders", description="", default=True, options={'HIDDEN'})
-        filter_glob = StringProperty(default="*.obj", options={'HIDDEN'})
-        files = CollectionProperty(name='File path', type=bpy.types.OperatorFileListElement)
+        filepath : StringProperty(name="File path", description="File filepath of Obj", maxlen=4096, default="")
+        filter_folder : BoolProperty(name="Filter folders", description="", default=True, options={'HIDDEN'})
+        filter_glob : StringProperty(default="*.obj", options={'HIDDEN'})
+        files : CollectionProperty(name='File path', type=bpy.types.OperatorFileListElement)
         filename_ext = '.obj'
         
         #@classmethod
@@ -62,13 +62,13 @@ class BR_OT_load_obj_as_shapekey(bpy.types.Operator):
 
         def execute(self, context):
                 #get file names, sort, and set target mesh
-                spath = os.path.split(self.filepath)
+                spath : os.path.split(self.filepath)
                 files = [file.name for file in self.files]
                 files.sort()
                 target = bpy.context.scene.objects.active
                 #add all ojs in sequence as shape  keys
                 for f in files:
-                        fp = os.path.join(spath[0], f)
+                        fp : os.path.join(spath[0], f)
                         self.load_obj(fp)
                 #now delete objs
                 sknames = [sk.name for sk in target.data.shape_keys.key_blocks]
@@ -86,7 +86,7 @@ class BR_OT_load_obj_as_shapekey(bpy.types.Operator):
                 return{'FINISHED'}
 
         def invoke(self, context, event):
-                wm = context.window_manager.fileselect_add(self)
+                wm : context.window_manager.fileselect_add(self)
                 return {'RUNNING_MODAL'}
 
         def load_obj(self, fp):
@@ -96,7 +96,7 @@ class BR_OT_load_obj_as_shapekey(bpy.types.Operator):
 
 class   BR_OT_export_shapekey_as_obj(bpy.types.Operator):
         bl_idname   =   "export.shape_keys_as_obj_sequence"
-        bl_label =  'Shape Keys as Obj files'
+        bl_label =  '.obj sequence from Shape Keys'
         bl_options = {'REGISTER', 'UNDO'}
         bl_description = "Export Shape Keys as Obj files"
         
@@ -120,7 +120,7 @@ class   BR_OT_export_shapekey_as_obj(bpy.types.Operator):
 
                 #write out the home shape
                 objFileName =   "zero.obj" # File   name = basis name
-                objPath =   join(   IOpath, objFileName )
+                objPath :  join(   IOpath, objFileName )
                 bpy.ops.export_scene.obj(   filepath = objPath, use_selection   =   True )
 
                 #   Iterate over shape key blocks   and save each   as an   OBJ file
@@ -129,7 +129,7 @@ class   BR_OT_export_shapekey_as_obj(bpy.types.Operator):
 
                         #   Set OBJ file path   and Export OBJ
                         objFileName =   skblock.name + ".obj"   #   File name   =   shapekey name
-                        objPath =   join(   IOpath, objFileName )
+                        objPath :  join(   IOpath, objFileName )
                         bpy.ops.export_scene.obj(   filepath = objPath, use_selection   =   True )
                         skblock.value   =   0   #   Reset   shape   key value   to 0
                 return{'FINISHED'}
@@ -137,9 +137,10 @@ class   BR_OT_export_shapekey_as_obj(bpy.types.Operator):
 def highlightObjects(selection_list):
     for i in selection_list:
         bpy.data.objects[i.name].select_set(state=True)
+
 class   BR_OT_export_selected_as_obj(bpy.types.Operator, ExportHelper):
         bl_idname   =   "export_scene.selected_to_folder"
-        bl_label =  'Selected as Obj files'
+        bl_label =  '.obj sequence'
         bl_options = {'REGISTER', 'UNDO'}
         bl_description = "Export selected meshes as separate obj files"
         bl_options = {'PRESET', 'UNDO'}
@@ -147,7 +148,7 @@ class   BR_OT_export_selected_as_obj(bpy.types.Operator, ExportHelper):
         # ExportHelper mixin class uses this
         filename_ext = ".obj"
 
-        filter_glob = StringProperty(
+        filter_glob : StringProperty(
                 default="*.obj;*.mtl",
                 options={'HIDDEN'},
                 )
@@ -155,97 +156,86 @@ class   BR_OT_export_selected_as_obj(bpy.types.Operator, ExportHelper):
         # List of operator properties, the attributes will be assigned
         # to the class instance from the operator setting before calling.
 
-        # context group
-        use_selection_setting = BoolProperty(
-                name="Selection Only",
-                description="Export selected objects only",
+        use_selection_setting : BoolProperty(
+                name="Use Selection",
+                description="Export selected obects only",
                 default=True,
                 )
-        use_animation_setting = BoolProperty(
-                name="Animation",
-                description="Write out an OBJ for each frame",
-                default=False,
-                )
+
 
         # object group
-        use_mesh_modifiers_setting = BoolProperty(
+        use_mesh_modifiers_setting : BoolProperty(
                 name="Apply Modifiers",
                 description="Apply modifiers (preview resolution)",
                 default=True,
                 )
 
         # extra data group
-        use_edges_setting = BoolProperty(
+        use_edges_setting : BoolProperty(
                 name="Include Edges",
                 description="",
                 default=True,
                 )
-        use_smooth_groups_setting = BoolProperty(
+        use_smooth_groups_setting : BoolProperty(
                 name="Smooth Groups",
                 description="Write sharp edges as smooth groups",
                 default=False,
                 )
-        use_smooth_groups_bitflags_setting = BoolProperty(
+        use_smooth_groups_bitflags_setting : BoolProperty(
                 name="Bitflag Smooth Groups",
                 description="Same as 'Smooth Groups', but generate smooth groups IDs as bitflags "
                             "(produces at most 32 different smooth groups, usually much less)",
                 default=False,
                 )
-        use_normals_setting = BoolProperty(
+        use_normals_setting : BoolProperty(
                 name="Write Normals",
                 description="Export one normal per vertex and per face, to represent flat faces and sharp edges",
                 default=True,
                 )
-        use_uvs_setting = BoolProperty(
+        use_uvs_setting : BoolProperty(
                 name="Include UVs",
                 description="Write out the active UV coordinates",
                 default=True,
                 )
-        use_materials_setting = BoolProperty(
+        use_materials_setting : BoolProperty(
                 name="Write Materials",
                 description="Write out the MTL file",
                 default=True,
                 )
-        use_triangles_setting = BoolProperty(
+        use_triangles_setting : BoolProperty(
                 name="Triangulate Faces",
                 description="Convert all faces to triangles",
                 default=False,
                 )
-        use_nurbs_setting = BoolProperty(
-                name="Write Nurbs",
-                description="Write nurbs curves as OBJ nurbs rather than "
-                            "converting to geometry",
-                default=False,
-                )
-        use_vertex_groups_setting = BoolProperty(
+        use_vertex_groups_setting : BoolProperty(
                 name="Polygroups",
                 description="",
                 default=False,
                 )
 
         # grouping group
-        use_blen_objects_setting = BoolProperty(
+        use_blen_objects_setting : BoolProperty(
                 name="Objects as OBJ Objects",
                 description="",
                 default=True,
                 )
-        group_by_object_setting = BoolProperty(
+        group_by_object_setting : BoolProperty(
                 name="Objects as OBJ Groups ",
                 description="",
                 default=False,
                 )
-        group_by_material_setting = BoolProperty(
+        group_by_material_setting : BoolProperty(
                 name="Material Groups",
                 description="",
                 default=False,
                 )
-        keep_vertex_order_setting = BoolProperty(
+        keep_vertex_order_setting : BoolProperty(
                 name="Keep Vertex Order",
                 description="",
-                default=False,
+                default=True,
                 )
 
-        axis_forward_setting = EnumProperty(
+        axis_forward_setting : EnumProperty(
                 name="Forward",
                 items=(('X', "X Forward", ""),
                        ('Y', "Y Forward", ""),
@@ -256,7 +246,7 @@ class   BR_OT_export_selected_as_obj(bpy.types.Operator, ExportHelper):
                        ),
                 default='-Z',
                 )
-        axis_up_setting = EnumProperty(
+        axis_up_setting : EnumProperty(
                 name="Up",
                 items=(('X', "X Up", ""),
                        ('Y', "Y Up", ""),
@@ -267,7 +257,7 @@ class   BR_OT_export_selected_as_obj(bpy.types.Operator, ExportHelper):
                        ),
                 default='Y',
                 )
-        global_scale_setting = FloatProperty(
+        global_scale_setting : FloatProperty(
                 name="Scale",
                 min=0.01, max=1000.0,
                 default=1.0,
@@ -297,7 +287,6 @@ class   BR_OT_export_selected_as_obj(bpy.types.Operator, ExportHelper):
                         bpy.ops.export_scene.obj(filepath=file_path, use_selection=True,
                                                 axis_forward=self.axis_forward_setting, 
                                                 axis_up=self.axis_up_setting,
-                                                use_animation=self.use_animation_setting, 
                                                 use_mesh_modifiers=self.use_mesh_modifiers_setting,
                                                 use_edges=self.use_edges_setting, 
                                                 use_smooth_groups=self.use_smooth_groups_setting,
@@ -306,7 +295,6 @@ class   BR_OT_export_selected_as_obj(bpy.types.Operator, ExportHelper):
                                                 use_uvs=self.use_uvs_setting, 
                                                 use_materials=self.use_materials_setting, 
                                                 use_triangles=self.use_triangles_setting, 
-                                                use_nurbs=self.use_nurbs_setting, 
                                                 use_vertex_groups=self.use_vertex_groups_setting, 
                                                 use_blen_objects=self.use_blen_objects_setting, 
                                                 group_by_object=self.group_by_object_setting, 
@@ -323,63 +311,63 @@ class   BR_OT_export_selected_as_obj(bpy.types.Operator, ExportHelper):
 class BR_OT_import_multiple_objs(bpy.types.Operator, ImportHelper):
         """Import Multiple Obj Files at Once"""
         bl_idname = "import_scene.multiple_objs"
-        bl_label = "Obj Files From Folder"
+        bl_label = ".obj sequence"
         bl_options = {'PRESET', 'UNDO'}
 
         # ImportHelper mixin class uses this
         filename_ext = ".obj"
 
-        filter_glob = StringProperty(
+        filter_glob : StringProperty(
                 default="*.obj",
                 options={'HIDDEN'},
                 )
 
         # Selected files
-        files = CollectionProperty(type=bpy.types.PropertyGroup)
+        files : CollectionProperty(type=bpy.types.PropertyGroup)
 
         # List of operator properties, the attributes will be assigned
         # to the class instance from the operator settings before calling.
-        ngons_setting = BoolProperty(
+        ngons_setting : BoolProperty(
                 name="NGons",
                 description="Import faces with more than 4 verts as ngons",
                 default=True,
                 )
-        edges_setting = BoolProperty(
+        edges_setting : BoolProperty(
                 name="Lines",
                 description="Import lines and faces with 2 verts as edge",
                 default=True,
                 )
-        smooth_groups_setting = BoolProperty(
+        smooth_groups_setting : BoolProperty(
                 name="Smooth Groups",
                 description="Surround smooth groups by sharp edges",
                 default=True,
                 )
 
-        split_objects_setting = BoolProperty(
+        split_objects_setting : BoolProperty(
                 name="Object",
                 description="Import OBJ Objects into Blender Objects",
                 default=True,
                 )
-        split_groups_setting = BoolProperty(
+        split_groups_setting : BoolProperty(
                 name="Group",
                 description="Import OBJ Groups into Blender Objects",
                 default=True,
                 )
 
-        groups_as_vgroups_setting = BoolProperty(
+        groups_as_vgroups_setting : BoolProperty(
                 name="Poly Groups",
                 description="Import OBJ groups as vertex groups",
                 default=False,
                 )
 
-        image_search_setting = BoolProperty(
+        image_search_setting : BoolProperty(
                 name="Image Search",
                 description="Search subdirs for any associated images "
                             "(Warning, may be slow)",
                 default=True,
                 )
 
-        split_mode_setting = EnumProperty(
+        split_mode_setting : EnumProperty(
                 name="Split",
                 items=(('ON', "Split", "Split geometry, omits unused verts"),
                        ('OFF', "Keep Vert Order", "Keep vertex order from file"),
@@ -387,14 +375,14 @@ class BR_OT_import_multiple_objs(bpy.types.Operator, ImportHelper):
                 default='OFF',
                 )
 
-        clamp_size_setting = FloatProperty(
+        clamp_size_setting : FloatProperty(
                 name="Clamp Size",
                 description="Clamp bounds under this value (zero to disable)",
                 min=0.0, max=1000.0,
                 soft_min=0.0, soft_max=1000.0,
                 default=0.0,
                 )
-        axis_forward_setting = EnumProperty(
+        axis_forward_setting : EnumProperty(
                 name="Forward",
                 items=(('X', "X Forward", ""),
                        ('Y', "Y Forward", ""),
@@ -406,7 +394,7 @@ class BR_OT_import_multiple_objs(bpy.types.Operator, ImportHelper):
                 default='-Z',
                 )
 
-        axis_up_setting = EnumProperty(
+        axis_up_setting : EnumProperty(
                 name="Up",
                 items=(('X', "X Up", ""),
                        ('Y', "Y Up", ""),
@@ -427,11 +415,11 @@ class BR_OT_import_multiple_objs(bpy.types.Operator, ImportHelper):
 
             layout.prop(self, "smooth_groups_setting")
 
-            box = layout.box()
-            row = box.row()
+            box : layout.box()
+            row : box.row()
             row.prop(self, "split_mode_setting", expand=True)
 
-            row = box.row()
+            row : box.row()
             if self.split_mode_setting == 'ON':
                 row.label(text="Split by:")
                 row.prop(self, "split_objects_setting")
@@ -508,14 +496,14 @@ class BR_OT_import_multiple_objs(bpy.types.Operator, ImportHelper):
 
 class BR_OT_load_fbx_with_vertex_color(bpy.types.Operator):
         bl_idname = 'view3d.fbx_w_color'
-        bl_label = 'FBX Files w Vertex Color'
+        bl_label = 'FBX (.fbx) w vertex color'
         bl_options = {'REGISTER', 'UNDO'}
         bl_description = "FBX Files w Vertex Color"
 
-        filepath = StringProperty(name="File path", description="File filepath of Fbx", maxlen=4096, default="")
-        filter_folder = BoolProperty(name="Filter folders", description="", default=True, options={'HIDDEN'})
-        filter_glob = StringProperty(default="*.fbx", options={'HIDDEN'})
-        files = CollectionProperty(name='File path', type=bpy.types.OperatorFileListElement)
+        filepath : StringProperty(name="File path", description="File filepath of Fbx", maxlen=4096, default="")
+        filter_folder : BoolProperty(name="Filter folders", description="", default=True, options={'HIDDEN'})
+        filter_glob : StringProperty(default="*.fbx", options={'HIDDEN'})
+        files : CollectionProperty(name='File path', type=bpy.types.OperatorFileListElement)
         filename_ext = '.fbx'
         
         #@classmethod
@@ -524,12 +512,12 @@ class BR_OT_load_fbx_with_vertex_color(bpy.types.Operator):
 
         def execute(self, context):
                 #get file names, sort, and set target mesh
-                spath = os.path.split(self.filepath)
+                spath : os.path.split(self.filepath)
                 files = [file.name for file in self.files]
                 files.sort()
                 #add all objs in sequence as shape  keys
                 for f in files:
-                        fp = os.path.join(spath[0], f)
+                        fp : os.path.join(spath[0], f)
                         bpy.ops.import_scene.fbx(filepath = fp)
                         
                         for ob in bpy.data.objects:
@@ -558,7 +546,7 @@ class BR_OT_load_fbx_with_vertex_color(bpy.types.Operator):
                 return{'FINISHED'}
 
         def invoke(self, context, event):
-                wm = context.window_manager.fileselect_add(self)
+                wm : context.window_manager.fileselect_add(self)
                 return {'RUNNING_MODAL'}
 
         def load_fbx(self, fp):
@@ -578,7 +566,7 @@ watched_objects = {}  # used to trigger compositor updates on scene updates
 
 def add_driver_prop(driver, name, type, id, path):
     """Configure a new driver variable."""
-    dv = driver.variables.new()
+    dv : driver.variables.new()
     dv.name = name
     dv.type = 'SINGLE_PROP'
     target = dv.targets[0]
@@ -590,12 +578,12 @@ def add_driver_prop(driver, name, type, id, path):
 # -----------------------------------------------------------------------------
 # Image loading
 
-ImageSpec = namedtuple(
+ImageSpec : namedtuple(
     'ImageSpec',
     ['image', 'size', 'frame_start', 'frame_offset', 'frame_duration'])
 
-num_regex = re.compile('[0-9]')  # Find a single number
-nums_regex = re.compile('[0-9]+')  # Find a set of numbers
+num_regex : re.compile('[0-9]')  # Find a single number
+nums_regex : re.compile('[0-9]+')  # Find a set of numbers
 
 
 def find_image_sequences(files):
@@ -611,15 +599,15 @@ def find_image_sequences(files):
     [('blaah', 1, 1), ('test2-001.jp2', 1, 2), ('test3-003.jp2', 3, 4)]
 
     """
-    files = iter(sorted(files))
+    files : iter(sorted(files))
     prev_file = None
     pattern = ""
     matches = []
     segment = None
     length = 1
     for filename in files:
-        new_pattern = num_regex.sub('#', filename)
-        new_matches = list(map(int, nums_regex.findall(filename)))
+        new_pattern : num_regex.sub('#', filename)
+        new_matches : list(map(int, nums_regex.findall(filename)))
         if new_pattern == pattern:
             # this file looks like it may be in sequence from the previous
 
@@ -670,22 +658,22 @@ def load_images(filenames, directory, force_reload=False, frame_start=1, find_se
     Returns a generator of ImageSpec wrapper objects later used for texture setup
     """
     if find_sequences:  # if finding sequences, we need some pre-processing first
-        file_iter = find_image_sequences(filenames)
+        file_iter : find_image_sequences(filenames)
     else:
-        file_iter = zip(filenames, repeat(1), repeat(1))
+        file_iter : zip(filenames, repeat(1), repeat(1))
 
     for filename, offset, frames in file_iter:
-        image = load_image(filename, directory, check_existing=True, force_reload=force_reload)
+        image : load_image(filename, directory, check_existing=True, force_reload=force_reload)
 
         # Size is unavailable for sequences, so we grab it early
-        size = tuple(image.size)
+        size : tuple(image.size)
 
         if image.source == 'MOVIE':
             # Blender BPY BUG!
             # This number is only valid when read a second time in 2.77
             # This repeated line is not a mistake
-            frames = image.frame_duration
-            frames = image.frame_duration
+            frames : image.frame_duration
+            frames : image.frame_duration
 
         elif frames > 1:  # Not movie, but multiple frames -> image sequence
             image.source = 'SEQUENCE'
@@ -720,7 +708,7 @@ def compute_camera_size(context, center, fill_mode, aspect):
     """Determine how large an object needs to be to fit or fill the camera's field of view."""
     scene = context.scene
     camera = scene.camera
-    view_frame = camera.data.view_frame(scene=scene)
+    view_frame : camera.data.view_frame(scene=scene)
     frame_size = \
         Vector([max(v[i] for v in view_frame) for i in range(3)]) - \
         Vector([min(v[i] for v in view_frame) for i in range(3)])
@@ -731,7 +719,7 @@ def compute_camera_size(context, center, fill_mode, aspect):
         frame_size = frame_size.xy
     else:
         # Perspective transform
-        distance = world_to_camera_view(scene, camera, center).z
+        distance : world_to_camera_view(scene, camera, center).z
         frame_size = distance * frame_size.xy / (-view_frame[0].z)
 
     # Determine what axis to match to the camera
@@ -809,7 +797,7 @@ def auto_align_nodes(node_tree):
         return
 
     def align(to_node):
-        from_nodes = get_input_nodes(to_node, links)
+        from_nodes : get_input_nodes(to_node, links)
         for i, node in enumerate(from_nodes):
             node.location.x = min(node.location.x, to_node.location.x - x_gap)
             node.location.y = to_node.location.y
@@ -1393,7 +1381,7 @@ class BR_OT_load_image_as_mesh_plane(Operator, AddObjectHelper):
         def import_images(self, context):
 
             # load images / sequences
-            images = tuple(load_images(
+            images : tuple(load_images(
                 (fn.name for fn in self.files),
                 self.directory,
                 force_reload=self.force_reload,
@@ -1724,34 +1712,34 @@ def menu_export_draw(self, context):
     self.layout.operator(BR_OT_export_selected_as_obj.bl_idname)
 
 
+classes = (
+    BR_OT_load_obj_as_shapekey,
+    BR_OT_export_shapekey_as_obj,
+    BR_OT_export_selected_as_obj,
+    BR_OT_import_multiple_objs,
+    BR_OT_load_fbx_with_vertex_color,
+    BR_OT_load_image_as_mesh_plane,
+)
+
 
 
 def register():
-        bpy.utils.register_class(BR_OT_load_obj_as_shapekey)
-        bpy.utils.register_class(BR_OT_export_shapekey_as_obj)
-        bpy.utils.register_class(BR_OT_export_selected_as_obj)
-        bpy.utils.register_class(BR_OT_import_multiple_objs)
-        bpy.utils.register_class(BR_OT_load_fbx_with_vertex_color)
-        bpy.utils.register_class(BR_OT_load_image_as_mesh_plane)
-#        bpy.utils.register_class(BR_OT_load_image_as_mesh_cylinder)
- #       bpy.utils.register_class(BR_OT_load_image_as_mesh_sphere)
+    from bpy.utils import register_class
+    for cls in classes:
+        register_class(cls)
+    bpy.types.TOPBAR_MT_file_import.append(menu_import_draw)
+    bpy.types.TOPBAR_MT_file_export.append(menu_export_draw)
+
 
                 
-        bpy.types.TOPBAR_MT_file_import.append(menu_import_draw)
-        bpy.types.TOPBAR_MT_file_export.append(menu_export_draw)
 
 def unregister():
-        bpy.utils.unregister_class(BR_OT_load_obj_as_shapekey)
-        bpy.utils.unregister_class(BR_OT_export_shapekey_as_obj)
-        bpy.utils.unregister_class(ExportVisibleAsObj)
-        bpy.utils.unregister_class(BR_OT_import_multiple_objs)
-        bpy.utils.unregister_class(BR_OT_load_fbx_with_vertex_color)
-        bpy.utils.unregister_class(BR_OT_load_image_as_mesh_plane)        
-        bpy.utils.unregister_class(BR_OT_load_image_as_mesh_cylinder)
-        bpy.utils.unregister_class(BR_OT_load_image_as_mesh_sphere)
-        
-        bpy.types.TOPBAR_MT_file_import.remove(menu_import_draw)
-        bpy.types.TOPBAR_MT_file_export.remove(menu_export_draw)
+    from bpy.utils import unregister_class
+    for cls in reversed(classes):
+        unregister_class(cls)
+            
+    bpy.types.TOPBAR_MT_file_import.remove(menu_import_draw)
+    bpy.types.TOPBAR_MT_file_export.remove(menu_export_draw)
 
 
 if __name__ == "__main__":
