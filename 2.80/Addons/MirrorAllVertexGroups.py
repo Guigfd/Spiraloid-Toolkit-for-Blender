@@ -218,14 +218,23 @@ def menu_draw(self, context):
     bpy.ops.object.dialog_operator('INVOKE_DEFAULT')
 
 
-def register():
-    bpy.utils.register_class(BR_OT_mirror_all_vertex_groups)
-    bpy.types.MESH_MT_vertex_group_specials.append(menu_draw)
 
+classes = (
+    BR_OT_mirror_all_vertex_groups,
+)
+
+
+def register():
+    from bpy.utils import register_class
+    for cls in classes:
+        register_class(cls)
+    bpy.types.MESH_MT_vertex_group_context_menu.append(menu_draw)
 
 def unregister():
-    bpy.types.MESH_MT_vertex_group_specials.remove(menu_draw)
-    bpy.utils.unregister_class(BR_OT_mirror_all_vertex_groups)
+    from bpy.utils import unregister_class
+    for cls in reversed(classes):
+        unregister_class(cls)
+    bpy.types.MESH_MT_vertex_group_context_menu.remove(menu_draw)
 
 
 if __name__ == "__main__":
