@@ -1,6 +1,6 @@
 bl_info = {
 		'name': 'Mirror All Vertex Groups',
-		'author': 'mathiasA',
+		'author': 'mathiasA, updated to 2.80 by bay raitt',
 		'version': (0, 1),
 		'blender': (2, 80, 0),	
 		'category': 'Animation',
@@ -191,7 +191,7 @@ class BR_OT_mirror_all_vertex_groups(bpy.types.Operator):
     enum_Way = EnumProperty(name="Which Way?", default='normal',
         items = [('reverse', '(-) to (+)', 'reverse'),('normal', '(+) to (-)', 'normal')])
 
-    enum_Pattern = EnumProperty(name="Which Pattern?", default='1',
+    enum_Pattern = EnumProperty(name="Which Pattern?", default='3',
         items = [('4', '_l and _r', '4'),('3', '_L and _R', '3'),('2', '.l and .r', '2'),('1', '.L and .R', '1')])
 
     special_pattern = BoolProperty(name="or... Use my own patter")      
